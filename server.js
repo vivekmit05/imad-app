@@ -17,7 +17,7 @@ app.get('/article-two',function(req,res){
     res.send('This article two page and article two will be published soon.');
 });
 
-app.get('article-three',function(req,res){
+app.get('/article-three',function(req,res){
     res.send('This article three page and article three will be published soon.');
 });
 
