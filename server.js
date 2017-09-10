@@ -5,18 +5,57 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne={
-title:'Article-one | Vivek Mishra',
-heading: 'Article One',
-date: 'Sep, 10, 2017',
-content:`
-            <p>
-                 This is 1st paragraph of article one.
-             </p>
-             <p>
-                 This is 2nd paragraph of article one.
-             </p>`
+var articles={
+  'article-one':{
+                title:'Article-one | Vivek Mishra',
+                heading: 'Article One',
+                date: 'Sep, 10, 2017',
+                content:`
+                            <p>
+                                 This is 1st paragraph of article one.
+                             </p>
+                             <p>
+                                 This is 2nd paragraph of article one.
+                             </p>`
+  },
+  'article-two':{
+                title:'Article-two | Vivek Mishra',
+                heading: 'Article Two',
+                date: 'Sep, 11, 2017',
+                content:`
+                            <p>
+                                 This is 1st paragraph of article two.
+                             </p>
+                             <p>
+                                 This is 2nd paragraph of article two.
+                             </p>`
+  },
+  'article-three':{
+                title:'Article-three | Vivek Mishra',
+                heading: 'Article Three',
+                date: 'Sep, 13, 2017',
+                content:`
+                            <p>
+                                 This is 1st paragraph of article three.
+                             </p>
+                             <p>
+                                 This is 2nd paragraph of article three.
+                             </p>`
+  }
 };
+
+// var articleOne={
+// title:'Article-one | Vivek Mishra',
+// heading: 'Article One',
+// date: 'Sep, 10, 2017',
+// content:`
+//             <p>
+//                  This is 1st paragraph of article one.
+//              </p>
+//              <p>
+//                  This is 2nd paragraph of article one.
+//              </p>`
+// };
 
 function createTemplate(data){
 var title=data.title;
@@ -28,7 +67,7 @@ var htmlTemplate=`
     <!doctype html>
     <html>
       <head>
-        <title>$(title)</title>
+        <title>${title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <link href="/ui/style.css" rel="stylesheet"/>
       </head>
@@ -39,13 +78,13 @@ var htmlTemplate=`
                 </div>
                 <hr>
                 <h3>
-                    $(heading)
+                    ${heading}
                 </h3>
                 <div>
-                    $(date)
+                    ${date}
                 </div>
              <div>
-                 $(content)
+                 ${content}
              </div>
           </div>
       </body>
@@ -64,8 +103,9 @@ app.get('/', function (req, res) {
 // });
 
 
-app.get('/article-one',function(req,res){
-  res.send(createTemplate(articleOne));
+app.get('/:articleName',function(req,res){
+  var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
 // app.get('/article-one',function(req,res){
 //     res.sendFile(path.join(__dirname,'ui','article-one.html'));
@@ -74,16 +114,16 @@ app.get('/article-one',function(req,res){
 //     res.sendFile(path.join(__dirname,'ui','article-one.html'));
 // });
 
-app.get('/article-two',function(req,res){
-    res.sendFile(path.join(__dirname,'ui','article-two.html'));
-});
+// app.get('/article-two',function(req,res){
+//     res.sendFile(path.join(__dirname,'ui','article-two.html'));
+// });
 // app.get('/article-two.html',function(req,res){
 //     res.sendFile(path.join(__dirname,'ui','article-two.html'));
 // });
 
-app.get('/article-three',function(req,res){
-    res.sendFile(path.join(__dirname,'ui','article-three.html'));
-});
+// app.get('/article-three',function(req,res){
+//     res.sendFile(path.join(__dirname,'ui','article-three.html'));
+// });
 // app.get('/article-three.html',function(req,res){
 //     res.sendFile(path.join(__dirname,'ui','article-three.html'));
 // });
