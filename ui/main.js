@@ -48,7 +48,7 @@ submitBtn.onclick=function(){
 	var nameInput=document.getElementById("name");
 	var name=nameInput.value;
 	//Make the request
-	request.open('GET','submit-name?name='+name,true); // url can alsobe like 'http:abc.com/submit-name?name='
+	request.open('GET','submit-name?name='+name,true); // url can also be like 'http:abc.com/submit-name?name='
 	request.send(null);
 	nameInput.value="";
 
