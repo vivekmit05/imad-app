@@ -91,7 +91,7 @@ var htmlTemplate=`
 }
 
 var pool=new Pool(config);
-app.get('/testDB',function(req,res){
+app.get('/testDB',function(req,res){ // endpoint to test data connection with the DB
     //make a select request and return the response with the result
     
     pool.query('SELECT * FROM test',function(err,result){
