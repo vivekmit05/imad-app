@@ -10,10 +10,12 @@ var config={
     port:'5432',
     password:process.env.DB_PASSWORD
 };
+var pool=new Pool(config);//created pool globally.
+
 var app = express();
 app.use(morgan('combined'));
 
-
+//Article objects used to create template
 var articles={
   'article-one':{
                 title:'Article-one | Vivek Mishra',
@@ -53,6 +55,7 @@ var articles={
   }
 };
 
+//createTemplate function that creates html template based on article objects provided to it
 function createTemplate(data){
 var title=data.title;
 var heading=data.heading;
@@ -90,20 +93,7 @@ var htmlTemplate=`
 
 }
 
-var pool=new Pool(config);
-app.get('/testDB',function(req,res){ // endpoint to test data connection with the DB
-    //make a select request and return the response with the result
-    
-    pool.query('SELECT * FROM test',function(err,result){
-        if(err){
-            res.status(500).send(err.toString());
-        }
-        else{
-            res.send(JSON.stringify(result.rows));
-        }
-    });
-});
-
+//End point to create counter for number of times this endpoint is accessed
 var counter=0;
 app.get('/counter',function(req,res){
   counter=counter+1;
@@ -113,6 +103,7 @@ app.get('/counter',function(req,res){
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
+
 
 var names=[];
 app.get('/submit-name',function(req,res){///submit-name?name=xxxxxx
@@ -124,6 +115,19 @@ app.get('/submit-name',function(req,res){///submit-name?name=xxxxxx
 app.get('/:articleName',function(req,res){
   var articleName=req.params.articleName;
   res.send(createTemplate(articles[articleName]));
+});
+
+app.get('/testDB',function(req,res){ // endpoint to test data connection with the DB
+    //make a select request and return the response with the result
+    
+    pool.query('SELECT * FROM test',function(err,result){
+        if(err){
+            res.status(500).send(err.toString());
+        }
+        else{
+            res.send(JSON.stringify(result.rows));
+        }
+    });
 });
 
 app.get('/articles/:articleName',function(req,res){
