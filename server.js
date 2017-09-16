@@ -117,9 +117,10 @@ app.get('/:articleName',function(req,res){
   res.send(createTemplate(articles[articleName]));
 });
 
-app.get('/testDB',function(req,res){ // endpoint to test data connection with the DB
-    //make a select request and return the response with the result
-    
+
+// endpoint to test data connection with the DB
+//make a select request and return the response with the result
+app.get('/testDB',function(req,res){ 
     pool.query('SELECT * FROM test',function(err,result){
         if(err){
             res.status(500).send(err.toString());
@@ -132,7 +133,7 @@ app.get('/testDB',function(req,res){ // endpoint to test data connection with th
 
 app.get('/articles/:articleName',function(req,res){
   var articleName=req.params.articleName;
-  pool.query("SELECT * FROM articles WHERE heading='"+articleName+"'",function(err,result){
+  pool.query("SELECT * FROM articles WHERE heading=$1",[articleName],function(err,result){
       if(err){
           res.status(500).send(err.toString());
       }
