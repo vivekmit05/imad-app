@@ -120,10 +120,10 @@ app.get('/submit-name',function(req,res){///submit-name?name=xxxxxx
   res.send(JSON.stringify(names));
 });
 
-app.get('/:articleName',function(req,res){
-  var articleName=req.params.articleName;
-  res.send(createTemplate(articles[articleName]));
-});
+// app.get('/:articleName',function(req,res){
+//   var articleName=req.params.articleName;
+//   res.send(createTemplate(articles[articleName]));
+// });
 
 
 // endpoint to test data connection with the DB
