@@ -78,6 +78,8 @@ loginSubmitBtn.onclick=function(){
 	var username=uname.value;
 	var pwd=document.getElementById("password_ID");
 	var password=pwd.value;
+	console.log(username);
+	console.log(password);
 	//Make the request
 	request.open('POST','login',true); // url can also be like 'http:abc.com/submit-name?name='
 	request.setRequestHeader('Content-Type','application/json');
