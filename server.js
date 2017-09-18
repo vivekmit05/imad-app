@@ -243,6 +243,13 @@ app.get('/status/checkLogin',function(req,res){
     }
 });
 
+//To delete auth session object
+app.get('/logout',function(req,res){
+    delete req.session.auth;
+    res.send(Logged Out Successfully);
+});
+
+
 
 
 // Do not change port, otherwise your app won't run on IMAD servers
