@@ -120,24 +120,24 @@ app.get('/submit-name',function(req,res){///submit-name?name=xxxxxx
   res.send(JSON.stringify(names));
 });
 
-// app.get('/:articleName',function(req,res){
-//   var articleName=req.params.articleName;
-//   res.send(createTemplate(articles[articleName]));
-// });
+app.get('/:articleName',function(req,res){
+  var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
+});
 
 
 // endpoint to test data connection with the DB
 //make a select request and return the response with the result
-// app.get('/testDB',function(req,res){ 
-//     pool.query('SELECT * FROM test',function(err,result){
-//         if(err){
-//             res.status(500).send(err.toString());
-//         }
-//         else{
-//             res.send(JSON.stringify(result.rows));
-//         }
-//     });
-// });
+app.get('/testDB',function(req,res){ 
+    pool.query('SELECT * FROM test',function(err,result){
+        if(err){
+            res.status(500).send(err.toString());
+        }
+        else{
+            res.send(JSON.stringify(result.rows));
+        }
+    });
+});
 
 app.get('/articles/:articleName',function(req,res){
   var articleName=req.params.articleName;
