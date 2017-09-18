@@ -4,6 +4,7 @@ var path = require('path');
 var Pool= require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser=require('body-parser');
+var session=require('express-session');
 
 var config={
     user:'vivekmit05',
@@ -17,6 +18,10 @@ var pool=new Pool(config);//created pool globally.
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());//Asking "express app" that in case you see JSON content load that JSON content into "req.body" variable
+app.use(session({
+    secret:'SomeRandomSecretValue',
+    cookie:{maxAge:1000*60*60*24*30}
+}));
 
 //Article objects used to create template
 var articles={
