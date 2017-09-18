@@ -234,7 +234,7 @@ app.post('/login',function(req,res){
 });
 
 //To check session login
-app.get('/checkLogin',function(req,res){
+app.get('/status/checkLogin',function(req,res){
     if(req.session && req.session.auth && req.session.auth.userId){
         res.send('You are logged in with user Id: '+req.session.auth.userId.toString());
     }
