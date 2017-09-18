@@ -74,10 +74,8 @@ loginSubmitBtn.onclick=function(){
 			}
 		}
 	}
-	var uname=document.getElementById("username_ID");
-	var username=uname.value;
-	var pwd=document.getElementById("password_ID");
-	var password=pwd.value;
+	var username=document.getElementById("username_ID").value;
+	var password=document.getElementById("password_ID").value;
 	console.log(username);
 	console.log(password);
 	console.log(JSON.stringify({username:username,password:password}));
