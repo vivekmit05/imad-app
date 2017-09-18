@@ -170,7 +170,7 @@ app.get('/ui/main.js',function(req,res){
 
 function hash(input,salt){
     var hashed=crypto.pbkdf2Sync(input, salt, 10000, 10, 'sha512');
-    return ['pdkdf2','salt','10000',hashed.toString('hex')].join('$');
+    return ['pdkdf2',salt,'10000',hashed.toString('hex')].join('$');
 }
 
 //End-point to test hash function
