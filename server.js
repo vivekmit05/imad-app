@@ -246,7 +246,7 @@ app.get('/status/checkLogin',function(req,res){
 //To delete auth session object
 app.get('/logout',function(req,res){
     delete req.session.auth;
-    res.send(Logged Out Successfully);
+    res.send('Logged Out Successfully');
 });
 
 
