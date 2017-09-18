@@ -230,8 +230,8 @@ app.post('/login',function(req,res){
                 }
             }
         }
-    });
-});
+    })
+})
 
 //To check session login
 app.get('/status/checkLogin',function(req,res){
