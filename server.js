@@ -234,12 +234,12 @@ app.post('/login',function(req,res){
 });
 
 //To check session login
-app.get('/status/checkLogin',function(req,res){
+app.get('/check-login',function(req,res){
     if(req.session && req.session.auth && req.session.auth.userId){
         res.send('You are logged in with user Id: '+req.session.auth.userId.toString());
     }
     else{
-        res.send('You are not logged in');
+        res.send('You are not logged');
     }
 });
 
