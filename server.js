@@ -218,6 +218,11 @@ app.post('/login',function(req,res){
                 var salt=dbString.split('$')[1];
                 var hashedString=hash(password,salt);
                 if(hashedString===dbString){
+                    //session is created before any response is send
+                    req.session.auth={userId: result.rows[0].id}; // internally a session id is created and that is mapped to an
+                                                                  // object auth that contains userId {auth:userID}
+                                                                  //On the client site a cookie is stored with only session id.
+                    
                     res.send('Logged In Successfully');
                 }
                 else{
@@ -226,6 +231,16 @@ app.post('/login',function(req,res){
             }
         }
     });
+});
+
+//To check session login
+app.get('/check-login',function(req,res){
+    if(req.session && req.session.auth && req.session.auth.userId){
+        res.send('You are logged in with user Id: '+req.session.auth.userId.toString());
+    }
+    else{
+        res.send('You are not logged in');
+    }
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
