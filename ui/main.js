@@ -53,3 +53,35 @@ submitBtn.onclick=function(){
 	nameInput.value="";
 
 };
+
+//Login
+var loginSubmitBtn=document.getElementById("login_submit_btn_ID");
+loginSubmitBtn.onclick=function(){
+	//Create a request object
+	var request=new XMLHttpRequest();
+
+	//Capture the response and store it in a variable
+	request.onreadystatechange=function(){
+		if(request.readyState===XMLHttpRequest.DONE){
+			if(request.status===200){
+			    alert('Logged In Successfully');
+			}
+			else if(request.status===403){
+			    alert('Username / Password is incorrect');
+			}
+			else if(request.status===500){
+			    alert('Something went wrong on the server');
+			}
+		}
+	}
+	var uname=document.getElementById("username_ID");
+	var username=uname.value;
+	var pwd=document.getElementById("password_ID");
+	var password=pwd.value;
+	//Make the request
+	request.open('POST','login',true); // url can also be like 'http:abc.com/submit-name?name='
+	request.setRequestHeader('Content-Type','application/json');
+	request.send(JSON.stringify({username:username,password:password}));
+	nameInput.value="";
+
+};
