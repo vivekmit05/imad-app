@@ -80,7 +80,7 @@ loginSubmitBtn.onclick=function(){
 	console.log(password);
 	console.log(JSON.stringify({username:username,password:password}));
 	//Make the request
-	request.open('POST','loginn',true); // url can also be like 'http:abc.com/submit-name?name='
+	request.open('POST','login',true); // url can also be like 'http:abc.com/submit-name?name='
 	request.setRequestHeader('Content-Type','application/json');
 	request.send(JSON.stringify({username:username,password:password}));
 
