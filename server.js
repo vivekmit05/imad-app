@@ -171,7 +171,7 @@ function hash(input,salt){
     return hashed.toString('hex');
 }
 app.get('/hash/:input',function(req,res){
-    var hashsedString=hash(req.params.input,'this-is-a-salt-value');
+    var hashedString=hash(req.params.input,'this-is-a-salt-value');
     res.send(hashedString);
 });
 
