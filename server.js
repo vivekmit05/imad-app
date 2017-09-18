@@ -120,11 +120,6 @@ app.get('/submit-name',function(req,res){///submit-name?name=xxxxxx
   res.send(JSON.stringify(names));
 });
 
-app.get('/:articleName',function(req,res){
-  var articleName=req.params.articleName;
-  res.send(createTemplate(articles[articleName]));
-});
-
 
 // endpoint to test data connection with the DB
 //make a select request and return the response with the result
@@ -234,7 +229,7 @@ app.post('/login',function(req,res){
 });
 
 //To check session login
-app.get('/status/checkLogin',function(req,res){
+app.get('/checkLogin',function(req,res){
     if(req.session && req.session.auth && req.session.auth.userId){
         res.send('You are logged in with user Id: '+req.session.auth.userId.toString());
     }
@@ -242,6 +237,13 @@ app.get('/status/checkLogin',function(req,res){
         res.send('You are not logged in');
     }
 });
+
+
+app.get('/:articleName',function(req,res){
+  var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
+});
+
 
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
