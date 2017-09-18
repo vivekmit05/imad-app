@@ -237,7 +237,12 @@ app.get('/checkLogin',function(req,res){
         res.send('You are not logged in');
     }
 });
-
+ 
+//To delete auth session object
+app.get('/logout',function(req,res){
+    delete req.session.auth;
+    res.send(Logged Out Successfully);
+});
 
 app.get('/:articleName',function(req,res){
   var articleName=req.params.articleName;
